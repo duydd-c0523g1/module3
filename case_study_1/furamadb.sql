@@ -21,10 +21,13 @@ identity_number VARCHAR(12),
 salary DECIMAL(5, 2),
 phone_number INT(11),
 email VARCHAR(100),
-address VARCHAR(100)
--- position_id
--- level_id
--- department_id
+address VARCHAR(100),
+position_id INT,
+level_id INT,
+department_id INT,
+FOREIGN KEY (position_id) REFERENCES job_position(position_id),
+FOREIGN KEY (level_id) REFERENCES academic_level(level_id),
+FOREIGN KEY (department_id) REFERENCES department(department_id)
 );
 
 CREATE TABLE customer_type(
@@ -41,8 +44,9 @@ identity_number VARCHAR(12),
 salary DECIMAL(5, 2),
 phone_number INT(11),
 email VARCHAR(100),
-address VARCHAR(100)
--- type_id
+address VARCHAR(100),
+customer_type_id INT,
+FOREIGN KEY (customer_type_id) REFERENCES customer_type(type_id)
 );
 
 CREATE TABLE rental_type(
@@ -65,9 +69,10 @@ room_equipments VARCHAR(100),
 additional_service VARCHAR(50),
 pool_area INT,
 total_floor INT,
-additional_service VARCHAR(50)
--- rental_type_id
--- service_type_id
+rental_type_id INT,
+service_type_id INT,
+FOREIGN KEY (rental_type_id) REFERENCES rental_type(type_id),
+FOREIGN KEY (service_type_id) REFERENCES service_type(type_id)
 );
 
 CREATE TABLE additional_services(
@@ -82,10 +87,13 @@ CREATE TABLE contracts(
 contract_id INT PRIMARY KEY AUTO_INCREMENT,
 start_date DATE,
 end_date DATE,
-deposit DECIMAL(5, 2)
--- employee_id
--- customer_id
--- service_id
+deposit DECIMAL(5, 2),
+employee_id INT,
+customer_id INT,
+service_id INT,
+FOREIGN KEY (employee_id) REFERENCES employees(employee_id),
+FOREIGN KEY (customer_id) REFERENCES customers(customer_id),
+FOREIGN KEY (service_id) REFERENCES services(service_id)
 );
 
 CREATE TABLE detailed_contracts(
