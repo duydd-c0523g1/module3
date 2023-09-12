@@ -1,26 +1,26 @@
 CREATE TABLE job_position (
   position_id INT AUTO_INCREMENT PRIMARY KEY,
-  position_name VARCHAR(45)
+  position_name VARCHAR(45) UNIQUE
 );
 
 CREATE TABLE academic_level (
   level_id INT AUTO_INCREMENT PRIMARY KEY,
-  level_name VARCHAR(45)
+  level_name VARCHAR(45) UNIQUE
 );
 
 CREATE TABLE department (
   department_id INT AUTO_INCREMENT PRIMARY KEY,
-  department_name VARCHAR(45)
+  department_name VARCHAR(45) UNIQUE
 );
 
 CREATE TABLE employees (
   employee_id INT AUTO_INCREMENT PRIMARY KEY,
   employee_name VARCHAR(45),
   dob DATE,
-  identity_number VARCHAR(45),
+  identity_number VARCHAR(45) UNIQUE,
   salary DOUBLE,
-  phone_number VARCHAR(45),
-  email VARCHAR(45),
+  phone_number VARCHAR(45) UNIQUE,
+  email VARCHAR(45) UNIQUE,
   address VARCHAR(45),
   position_id INT,
   level_id INT,
@@ -32,7 +32,7 @@ CREATE TABLE employees (
 
 CREATE TABLE customer_type (
   type_id INT AUTO_INCREMENT PRIMARY KEY,
-  type_name VARCHAR(45)
+  type_name VARCHAR(45) UNIQUE
 );
 
 CREATE TABLE customers (
@@ -41,8 +41,8 @@ CREATE TABLE customers (
   customer_name VARCHAR(45),
   dob DATE,
   gender BIT,
-  identity_number VARCHAR(45),
-  phone_number VARCHAR(45),
+  identity_number VARCHAR(45) UNIQUE,
+  phone_number VARCHAR(45) UNIQUE,
   email VARCHAR(45),
   address VARCHAR(45),
   FOREIGN KEY (customer_type_id) REFERENCES customer_type(type_id)
@@ -50,12 +50,12 @@ CREATE TABLE customers (
 
 CREATE TABLE rental_type (
   type_id INT AUTO_INCREMENT PRIMARY KEY,
-  type_name VARCHAR(45)
+  type_name VARCHAR(45) UNIQUE
 );
 
 CREATE TABLE service_type (
   type_id INT AUTO_INCREMENT PRIMARY KEY,
-  type_name VARCHAR(45)
+  type_name VARCHAR(45) UNIQUE
 );
 
 CREATE TABLE services (
@@ -77,7 +77,7 @@ CREATE TABLE services (
 
 CREATE TABLE additional_services (
   as_id INT AUTO_INCREMENT PRIMARY KEY,
-  as_name VARCHAR(45),
+  as_name VARCHAR(45) UNIQUE,
   as_price DOUBLE,
   as_unit VARCHAR(10),
   as_status VARCHAR(45)
