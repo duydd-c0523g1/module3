@@ -64,6 +64,7 @@ CREATE TABLE services (
   service_area INT,
   rental_fee DOUBLE,
   max_user INT,
+  room_standard VARCHAR(45),
   rental_type_id INT,
   service_type_id INT,
   room_equipments VARCHAR(45),
