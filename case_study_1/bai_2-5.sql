@@ -30,5 +30,5 @@ JOIN customer_type AS ct ON c.customer_type_id = ct.type_id
 LEFT JOIN contracts AS con ON c.customer_id = con.customer_id
 LEFT JOIN services AS s ON con.service_id = s.service_id
 LEFT JOIN detailed_contracts AS dc ON con.contract_id = dc.contract_id
-LEFT JOIN additional_services AS asv ON dc.as_id = asv.as_id
+LEFT JOIN additional_services AS asv ON dc.asv_id = asv.asv_id
 ORDER BY c.customer_id;
