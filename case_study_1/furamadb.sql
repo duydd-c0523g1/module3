@@ -76,11 +76,11 @@ CREATE TABLE services (
 );
 
 CREATE TABLE additional_services (
-  as_id INT AUTO_INCREMENT PRIMARY KEY,
-  as_name VARCHAR(45) UNIQUE,
-  as_price DOUBLE,
-  as_unit VARCHAR(10),
-  as_status VARCHAR(45)
+  asv_id INT AUTO_INCREMENT PRIMARY KEY,
+  asv_name VARCHAR(45) UNIQUE,
+  asv_price DOUBLE,
+  asv_unit VARCHAR(10),
+  asv_status VARCHAR(45)
 );
 
 CREATE TABLE contracts (
@@ -99,8 +99,8 @@ CREATE TABLE contracts (
 CREATE TABLE detailed_contracts (
   detailed_contract_id INT AUTO_INCREMENT PRIMARY KEY,
   contract_id INT,
-  as_id INT,
+  asv_id INT,
   quantity INT,
   FOREIGN KEY (contract_id) REFERENCES contracts(contract_id),
-  FOREIGN KEY (as_id) REFERENCES additional_services(as_id)
+  FOREIGN KEY (asv_id) REFERENCES additional_services(asv_id)
 );

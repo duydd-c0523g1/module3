@@ -48,7 +48,7 @@ VALUES	("Villa Beach Front", 2500, 1000000, 10, "VIP", "Swimming pool", 500, 4, 
 		("House Princess 02", 10000, 4000000, 5, "VIP", "BBQ", NULL, 2, NULL, 3, 2),
 		("Room Twin 02", 3000, 900000, 2, "Normal", "Television", NULL, NULL, "01 Motorbike", 4, 3);
         
-INSERT INTO additional_services(as_name, as_price, as_unit, as_status)
+INSERT INTO additional_services(asv_name, asv_price, asv_unit, asv_status)
 VALUES	("Karaoke", 10000, "Hour", "Available"), 
 		("Motorbike Rental", 10000, "Each", "1 unavailable"), 
         ("Bicycle Rental", 20000, "Each", "Good"), 
@@ -70,7 +70,7 @@ VALUES	("2020-12-08", "2020-12-08", 0, 3, 1, 3),
 		("2021-04-25", "2021-04-25", 0, 2, 2, 1),
 		("2021-05-25", "2021-05-27", 0, 7, 10, 1);
 
-INSERT INTO detailed_contracts(quantity, contract_id, as_id)
+INSERT INTO detailed_contracts(quantity, contract_id, asv_id)
 VALUES	(5, 2, 4),
 		(8, 2, 5),
 		(15, 2, 6),
