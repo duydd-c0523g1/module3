@@ -90,11 +90,11 @@ WHERE
     StudentName = 'hung';
     
 SELECT 
-    s.StudentName, sj.SubName, m.Mark
+    Student.StudentName, sj.SubName, m.Mark
 FROM
     Student
         JOIN
-    Mark AS m ON m.StudentId = s.StudentId
+    Mark AS m ON m.StudentId = Student.StudentId
         JOIN
     Subject AS sj ON m.SubId = sj.SubId
 ORDER BY mark DESC
