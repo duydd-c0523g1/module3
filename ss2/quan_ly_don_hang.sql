@@ -1,20 +1,20 @@
 CREATE TABLE customers(
 customer_id INT PRIMARY KEY AUTO_INCREMENT,
-customer_name VARCHAR(50),
-customer_age INT
+customer_name VARCHAR(50) NOT NULL,
+customer_age INT NOT NULL
 );
 
 CREATE TABLE products(
 product_id INT PRIMARY KEY AUTO_INCREMENT,
-product_name VARCHAR(50),
-product_price DOUBLE
+product_name VARCHAR(50) NOT NULL,
+product_price DOUBLE NOT NULL
 );
 
 CREATE TABLE orders(
 order_id INT PRIMARY KEY AUTO_INCREMENT,
-customer_id VARCHAR(50),
-order_date DATE,
-order_total DOUBLE,
+customer_id VARCHAR(50) NOT NULL,
+order_date DATE NOT NULL,
+order_total DOUBLE NOT NULL,
 FOREIGN KEY (customer_id) REFERENCES customers(customer_id)
 );
 

@@ -1,7 +1,7 @@
 CREATE TABLE nha_cc(
 ma_ncc INT PRIMARY KEY AUTO_INCREMENT,
-ten_ncc VARCHAR(50),
-dia_chi VARCHAR(50)
+ten_ncc VARCHAR(50) NOT NULL,
+dia_chi VARCHAR(50) NOT NULL
 );
 
 CREATE TABLE so_dt(
@@ -13,23 +13,23 @@ FOREIGN KEY (ma_ncc) REFERENCES nha_cc(ma_ncc)
 
 CREATE TABLE phieu_xuat(
 so_px INT PRIMARY KEY AUTO_INCREMENT,
-ngay_xuat DATE
+ngay_xuat DATE NOT NULL
 );
 
 CREATE TABLE phieu_nhap(
 so_pn INT PRIMARY KEY AUTO_INCREMENT,
-ngay_nhap DATE
+ngay_nhap DATE NOT NULL
 );
 
 CREATE TABLE vat_tu(
 ma_vtu INT PRIMARY KEY AUTO_INCREMENT,
-ten_vtu VARCHAR(100)
+ten_vtu VARCHAR(100) NOT NULL
 );
 
 CREATE TABLE chi_tiet_px(
 so_px INT,
 ma_vtu INT,
-dg_xuat DOUBLE,
+dg_xuat DOUBLE NOT NULL,
 sl_xuat INT,
 PRIMARY KEY (so_px, ma_vtu),
 FOREIGN KEY (so_px) REFERENCES phieu_xuat(so_px),
