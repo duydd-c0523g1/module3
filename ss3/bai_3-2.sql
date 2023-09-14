@@ -1,13 +1,13 @@
 CREATE TABLE customers (
     c_id INT PRIMARY KEY AUTO_INCREMENT,
-    c_name VARCHAR(25),
-    c_age TINYINT
+    c_name VARCHAR(25) NOT NULL,
+    c_age TINYINT NOT NULL
 );
 
 CREATE TABLE orders (
     o_id INT PRIMARY KEY AUTO_INCREMENT,
-    c_id INT,
-    o_date DATE,
+    c_id INT NOT NULL,
+    o_date DATE NOT NULL,
     o_total INT,
     FOREIGN KEY (c_id)
         REFERENCES customers (c_id)
@@ -15,14 +15,15 @@ CREATE TABLE orders (
 
 CREATE TABLE products (
     p_id INT PRIMARY KEY AUTO_INCREMENT,
-    p_name VARCHAR(25),
+    p_name VARCHAR(25) NOT NULL,
     p_price INT
 );
 
 CREATE TABLE order_details (
     o_id INT,
     p_id INT,
-    o_qty INT,
+    o_qty INT NOT NULL,
+    UNIQUE (o_id, o_id),
     FOREIGN KEY (o_id)
         REFERENCES orders (o_id),
     FOREIGN KEY (p_id)
