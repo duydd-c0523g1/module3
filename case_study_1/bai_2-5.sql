@@ -26,9 +26,9 @@ SELECT
     con.end_date,
     (s.rental_fee + IFNULL(dc.quantity, 0) * IFNULL(asv.asv_price, 0)) AS total_price
 FROM customers AS c
-JOIN customer_type AS ct ON c.customer_type_id = ct.type_id
-LEFT JOIN contracts AS con ON c.customer_id = con.customer_id
-LEFT JOIN services AS s ON con.service_id = s.service_id
-LEFT JOIN detailed_contracts AS dc ON con.contract_id = dc.contract_id
-LEFT JOIN additional_services AS asv ON dc.asv_id = asv.asv_id
+JOIN customer_type ct ON c.customer_type_id = ct.type_id
+LEFT JOIN contracts con ON c.customer_id = con.customer_id
+LEFT JOIN services s ON con.service_id = s.service_id
+LEFT JOIN detailed_contracts dc ON con.contract_id = dc.contract_id
+LEFT JOIN additional_services asv ON dc.asv_id = asv.asv_id
 ORDER BY c.customer_id;
