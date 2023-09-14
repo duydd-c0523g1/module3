@@ -9,9 +9,9 @@ FROM employees
 WHERE FLOOR(DATEDIFF(CURDATE(), dob) / 365) BETWEEN 18 AND 50 AND (address LIKE "%quảng trị%" OR address LIKE "%đà nẵng%");
 
 SELECT c.customer_name, COUNT(c.customer_id) AS "time_booked"
-FROM customers AS c
-JOIN customer_type AS ct ON c.customer_type_id = ct.type_id
-LEFT JOIN contracts AS con ON c.customer_id = con.customer_id
+FROM customers c
+JOIN customer_type ct ON c.customer_type_id = ct.type_id
+LEFT JOIN contracts con ON c.customer_id = con.customer_id
 WHERE ct.type_name = "diamond"
 GROUP BY c.customer_name
 ORDER BY COUNT(c.customer_id);
