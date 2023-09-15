@@ -54,5 +54,23 @@ GROUP BY customer_name;
 
 -- 9.	Thực hiện thống kê doanh thu theo tháng, nghĩa là tương ứng với mỗi tháng trong năm 2021 thì sẽ có bao nhiêu khách hàng thực hiện đặt phòng.
 
-SELECT start_date AS "month", 
-COUNT(customer_id), 
+SELECT MONTH(start_date) AS "month",
+COUNT(con.customer_id) AS "time_booked"
+FROM contracts con
+WHERE YEAR(start_date) = 2021
+GROUP BY MONTH(start_date);
+
+-- 10.	Hiển thị thông tin tương ứng với từng hợp đồng thì đã sử dụng bao nhiêu dịch vụ đi kèm. 
+-- Kết quả hiển thị bao gồm ma_hop_dong, ngay_lam_hop_dong, ngay_ket_thuc, tien_dat_coc, so_luong_dich_vu_di_kem 
+-- (được tính dựa trên việc sum so_luong ở dich_vu_di_kem).
+
+SELECT con. contract_id,
+start_date,
+end_date,
+deposit,
+SUM(dc.quantity) AS "number_of_services"
+FROM contracts con
+LEFT JOIN detailed_contracts dc
+ON con.contract_id = dc.contract_id
+GROUP BY con.contract_id
+ORDER BY con.contract_id;
