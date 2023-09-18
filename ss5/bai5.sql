@@ -76,7 +76,7 @@ SET product_code = p_code,
 WHERE product_id = id;
 END //
 delimiter ;
-CALL update_product_by_id (7, "CPU", "Intel Core i9 9900K", 95000000, 1, "9th Gen", 1);
+CALL update_product_by_id (7, "CPU", "Intel Core i9 9900K", 9500000, 1, "9th Gen", 1);
 
 delimiter //
 CREATE PROCEDURE remove_product_by_id(id INT)
