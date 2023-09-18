@@ -65,7 +65,7 @@ LIMIT 2;
 -- Thông tin hiển thị bao gồm ma_hop_dong, ten_loai_dich_vu, ten_dich_vu_di_kem, so_lan_su_dung 
 -- (được tính dựa trên việc count các ma_dich_vu_di_kem).
 
-	SELECT 
+SELECT 
     con.contract_id, st.type_name, asv.asv_name
 FROM
     contracts con
