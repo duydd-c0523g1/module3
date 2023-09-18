@@ -41,7 +41,7 @@ CREATE VIEW platinum_customers AS
         YEAR(con.start_date) = 2021
             AND ct.type_id = 2
     GROUP BY con.contract_id
-    HAVING SUM(IFNULL((asv.asv_price * dc.quantity), 0) + IFNULL(ser.rental_fee, 0)) > 10000000;
+    HAVING SUM(IFNULL((asv.asv_price * dc.quantity), 0) + IFNULL(ser.rental_fee, 0)) > 1000000;
 -- ---------------
 UPDATE customers cus
         JOIN
