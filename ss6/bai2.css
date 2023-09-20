@@ -1,0 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@300&display=swap');
+*
+{
+    background-color: beige;
+    font-family: 'Zilla Slab', serif;
+}
+h1
+{
+    text-transform: uppercase;
+}
+p
+{
+    text-indent: 30px;
+    font-size:  1.25em;
+    text-align: left;
+}
