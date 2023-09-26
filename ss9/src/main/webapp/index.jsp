@@ -42,10 +42,11 @@
                 You saved: ${result}
             </td>
             <td>
-                <input type="submit" value="Calculate">
+                Price after: ${priceAfter}
             </td>
         </tr>
     </table>
+    <input type="submit" value="Calculate">
 </form>
 
 </body>
