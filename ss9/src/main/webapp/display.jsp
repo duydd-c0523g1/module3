@@ -11,7 +11,8 @@
     <title>Title</title>
 </head>
 <body>
-You saved: ${result}
+Product's name: ${name} <br>
+You saved: ${result} <br>
 Price after: ${priceAfter}
 </body>
 </html>
