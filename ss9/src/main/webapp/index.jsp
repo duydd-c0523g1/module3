@@ -37,14 +37,6 @@
                 <input type="number" name="discountPercent" id="discount"> <br>
             </td>
         </tr>
-        <tr>
-            <td>
-                You saved: ${result}
-            </td>
-            <td>
-                Price after: ${priceAfter}
-            </td>
-        </tr>
     </table>
     <input type="submit" value="Calculate">
 </form>
