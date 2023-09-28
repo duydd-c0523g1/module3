@@ -9,6 +9,7 @@
 <html>
 <head>
     <title>Title</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <table>
@@ -34,7 +35,7 @@
                   <td><label for="description">Product description: </label></td>
                   <td><input type="text" name="description" id="description" required value="${product.description}"></td>
               </tr>
-              <tr><td><input type="submit" value="Save"></td></tr>
+              <tr><td colspan="2"><input type="submit" value="Save"></td></tr>
           </table>
       </form>
   </table>

@@ -15,6 +15,7 @@ public class ProductRepoImpl implements IProductRepo {
     }
     @Override
     public List<Product> displayList() {
+//        productList.removeIf(p -> p.getId() == -1);
         return productList;
     }
 

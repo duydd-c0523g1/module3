@@ -11,22 +11,22 @@
 <head>
     <title>Product Manager</title>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<table>
+
+<table border="1" style="border-collapse: collapse">
     <form action="product-controller?action=findId" method="post">
         <tr>
             <td><label for="id">Find product by ID: </label></td>
-            <td><input type="number" name="idToFind" id="id" required></td>
-            <td><td><input type="submit" value="Find"></td></td>
+            <td colspan="2"><input type="number" name="idToFind" id="id" required></td>
+            <td colspan="3" style="text-align: center; padding: 0px 10px"><input type="submit" value="Find"></td>
         </tr>
         <tr>
-            <td><p>${result}</p>
+            <td style="color: red; text-align: center" colspan="6"><p>${result}</p>
         </tr>
         </td>
     </form>
-</table>
-<table border="1" style="border-collapse: collapse">
     <tr>
         <th colspan="6" style="text-align: center;">Product List</th>
     </tr>
@@ -50,6 +50,9 @@
             <td><a href="product-controller?action=delete&productId=${product.id}">Delete</a></td>
         </tr>
     </c:forEach>
+    <tr style="text-align: center">
+        <td colspan="6" style="color: red"><p>${listEmpty}</p></td>
+    </tr>
 </table>
 </body>
 </html>

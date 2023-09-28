@@ -103,10 +103,19 @@ public class ProductController extends HttpServlet {
         requestDispatcher.forward(request, response);
     }
     private void deleteProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        productService.deleteProduct(Integer.parseInt(request.getParameter("productId")));
+        String listEmpty = "The list cannot be empty! Please try to edit the product instead";
         List<Product> productList = productService.displayList();
-        request.setAttribute("productList", productList);
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/product-list.jsp");
-        requestDispatcher.forward(request, response);
+        if (productList.size() == 1) {
+//            productService.addProduct(new Product(-1, "placeholder", -1,"placeholder","placeholder"));
+            request.setAttribute("listEmpty" ,listEmpty);
+            request.setAttribute("productList", productList);
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("/product-list.jsp");
+            requestDispatcher.forward(request, response);
+        } else {
+            productService.deleteProduct(Integer.parseInt(request.getParameter("productId")));
+            request.setAttribute("productList", productList);
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("/product-list.jsp");
+            requestDispatcher.forward(request, response);
+        }
     }
 }
