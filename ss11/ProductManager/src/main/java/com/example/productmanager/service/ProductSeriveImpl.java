@@ -29,4 +29,9 @@ public class ProductSeriveImpl implements IProductService {
     public void editProduct(Product product) {
         productRepo.editProduct(product);
     }
+
+    @Override
+    public void deleteProduct(int id) {
+        productRepo.deleteProduct(id);
+    }
 }

@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ProductRepoImpl implements IProductRepo {
-    private static List<Product> productList = new ArrayList<>();
+    private static final List<Product> productList = new ArrayList<>();
     static {
         productList.add(new Product(1,"Corvette Stingray", 80000, "Blue", "Chevrolet"));
         productList.add(new Product(2,"Spectre", 422000, "2024", "Rolls-Royce"));
@@ -39,6 +39,17 @@ public class ProductRepoImpl implements IProductRepo {
         for (Product prod : productList) {
             if (prod.getId() == product.getId()) {
                 productList.set(productList.indexOf(prod), product);
+                return;
+            }
+        }
+    }
+
+    @Override
+    public void deleteProduct(int id) {
+        for (int i = 0; i < productList.size(); i++){
+            if (productList.get(i).getId() == id) {
+                productList.remove(productList.get(i));
+                return;
             }
         }
     }

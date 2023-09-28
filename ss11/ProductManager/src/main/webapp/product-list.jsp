@@ -18,9 +18,7 @@
         <tr>
             <td><label for="id">Find product by ID: </label></td>
             <td><input type="number" name="idToFind" id="id" required></td>
-        </tr>
-        <tr>
-            <td><input type="submit" value="Find"></td>
+            <td><td><input type="submit" value="Find"></td></td>
         </tr>
         <tr>
             <td><p>${result}</p>
@@ -48,8 +46,8 @@
             <td>${product.price}</td>
             <td>${product.manufacturer}</td>
             <td>${product.description}</td>
-            <td><a href="product-controller?action=fill&productId=${product.id}">Edit product</a></td>
-            <td><a href="product-controller?action=delete&productId=${product.id}">Delete product</a></td>
+            <td><a href="product-controller?action=fill&productId=${product.id}">Edit</a></td>
+            <td><a href="product-controller?action=delete&productId=${product.id}">Delete</a></td>
         </tr>
     </c:forEach>
 </table>

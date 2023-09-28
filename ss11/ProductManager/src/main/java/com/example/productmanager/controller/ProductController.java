@@ -26,6 +26,9 @@ public class ProductController extends HttpServlet {
             case "fill":
                 fillForm(request, response);
                 break;
+            case "delete":
+                deleteProduct(request, response);
+                break;
         }
     }
 
@@ -94,6 +97,13 @@ public class ProductController extends HttpServlet {
         String manufacturer = request.getParameter("manufacturer");
         Product product = new Product(id, name, price, manufacturer, description);
         productService.editProduct(product);
+        List<Product> productList = productService.displayList();
+        request.setAttribute("productList", productList);
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/product-list.jsp");
+        requestDispatcher.forward(request, response);
+    }
+    private void deleteProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        productService.deleteProduct(Integer.parseInt(request.getParameter("productId")));
         List<Product> productList = productService.displayList();
         request.setAttribute("productList", productList);
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("/product-list.jsp");
