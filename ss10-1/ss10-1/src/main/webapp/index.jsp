@@ -24,10 +24,10 @@
     </tr>
     <c:forEach var="customer" items="${customersList}" varStatus="thisCustomer">
       <tr>
-        <td>${customer.name}</td>
-        <td>${customer.dob}</td>
-        <td>${customer.address}</td>
-        <td ><img src="${customer.picture}" alt="" style="width: 100px" height="auto"></td>
+        <td style="padding: 10px">${customer.name}</td>
+        <td style="padding: 10px">${customer.dob}</td>
+        <td style="padding: 10px">${customer.address}</td>
+        <td><img src="${customer.picture}" alt="" style="width: 100px" height="auto"></td>
       </tr>
     </c:forEach>
 
