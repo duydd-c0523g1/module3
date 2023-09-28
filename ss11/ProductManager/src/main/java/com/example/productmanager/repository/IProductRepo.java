@@ -9,4 +9,5 @@ public interface IProductRepo {
     void addProduct(Product product);
     Product findById(int id);
     void editProduct(Product product);
+    void deleteProduct(int id);
 }

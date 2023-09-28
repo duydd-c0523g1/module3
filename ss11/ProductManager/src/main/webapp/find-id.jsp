@@ -9,27 +9,28 @@
 <html>
 <head>
     <title>Product Manager</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <table border="1" style="border-collapse: collapse">
+<table border="1" style="border-collapse: collapse">
     <tr style="text-align: center">
-      <th colspan="4">Product Found!</th>
+        <th colspan="4">Product Found!</th>
     </tr>
     <tr style="text-align: center">
-      <th>Product name</th>
-      <th>Product price</th>
-      <th>Product manufacturer</th>
-      <th>Product description</th>
+        <th>Product name</th>
+        <th>Product price</th>
+        <th>Product manufacturer</th>
+        <th>Product description</th>
     </tr>
     <tr>
-      <td>${result.name}</td>
-      <td>${result.price}</td>
-      <td>${result.manufacturer}</td>
-      <td>${result.description}</td>
+        <td>${result.name}</td>
+        <td>${result.price}</td>
+        <td>${result.manufacturer}</td>
+        <td>${result.description}</td>
     </tr>
     <tr style="text-align: center">
-      <td colspan="4"><a href="product-controller?action=list">< Back</a></td>
+        <td colspan="4"><a href="product-controller?action=list">< Back</a></td>
     </tr>
-  </table>
+</table>
 </body>
 </html>
