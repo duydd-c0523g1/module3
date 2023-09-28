@@ -14,4 +14,19 @@ public class ProductSeriveImpl implements IProductService {
     public List<Product> displayList() {
         return productRepo.displayList();
     }
+
+    @Override
+    public void addProduct(Product product) {
+        productRepo.addProduct(product);
+    }
+
+    @Override
+    public Product findById(int id) {
+        return productRepo.findById(id);
+    }
+
+    @Override
+    public void editProduct(Product product) {
+        productRepo.editProduct(product);
+    }
 }

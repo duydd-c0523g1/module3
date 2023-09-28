@@ -11,6 +11,6 @@
     <title>Product Manager</title>
 </head>
 <body>
-<a href="product-list.jsp?action=list">Start Program</a>
+<a href="product-controller?action=list">Start Program</a>
 </body>
 </html>
