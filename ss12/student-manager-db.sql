@@ -1,0 +1,11 @@
+CREATE TABLE students (
+sid INT PRIMARY KEY AUTO_INCREMENT,
+sname VARCHAR(50) NOT NULL,
+sdob DATE NOT NULL,
+sclass VARCHAR(20) DEFAULT("Pending"),
+semail VARCHAR(50) DEFAULT("Pending"),
+sphone INT NOT NULL
+);
+
+ALTER TABLE students
+MODIFY COLUMN semail VARCHAR(20) DEFAULT("Pending");
