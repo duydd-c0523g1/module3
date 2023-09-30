@@ -10,36 +10,36 @@ public class StudentServiceImpl implements IStudentService {
     private final IStudentDAO studentRepo = new StudentDAO();
     @Override
     public List<Student> displayStudent() {
-        return null;
+        return studentRepo.displayStudent();
     }
 
     @Override
     public List<Student> sortByName() {
-        return null;
+        return studentRepo.sortByName();
     }
 
     @Override
     public List<Student> findStudentByName(String name) {
-        return null;
+        return studentRepo.findStudentByName(name);
     }
 
     @Override
     public void deleteStudent(int id) {
-
+        studentRepo.deleteStudent(id);
     }
 
     @Override
     public Student findStudentByID(int id) {
-        return null;
+        return studentRepo.findStudentByID(id);
     }
 
     @Override
     public void addStudent(Student student) {
-
+        studentRepo.addStudent(student);
     }
 
     @Override
     public void editStudent(Student student) {
-
+        studentRepo.editStudent(student);
     }
 }
