@@ -9,6 +9,7 @@ import java.util.List;
 
 public class UserServiceImpl implements IUserService {
     private final IUserDAO userDAO = new UserDAO();
+
     @Override
     public void insertUser(User user) throws SQLException {
         userDAO.insertUser(user);
@@ -21,7 +22,7 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     public List<User> selectAllUsers() {
-        return userDAO.selectAllUsers();
+        return userDAO.displayAllUsers();
     }
 
     @Override
@@ -42,5 +43,30 @@ public class UserServiceImpl implements IUserService {
     @Override
     public List<User> orderByName() {
         return userDAO.orderByName();
+    }
+
+    @Override
+    public User findUserById(int id) {
+        return userDAO.findUserById(id);
+    }
+
+    @Override
+    public void insertUserSP(User user) throws SQLException {
+        userDAO.insertUserSP(user);
+    }
+
+    @Override
+    public void deleteUserSP(int id) {
+        userDAO.deleteUserSP(id);
+    }
+
+    @Override
+    public void editUserSP(User user) {
+        userDAO.editUserSP(user);
+    }
+
+    @Override
+    public List<User> displayUsersSP() {
+        return userDAO.displayUsersSP();
     }
 }

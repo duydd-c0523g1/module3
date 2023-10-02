@@ -18,4 +18,9 @@ public interface IUserService {
 
     List<User> findByCountry(String country) throws SQLException;
     List<User> orderByName();
+    User findUserById(int id);
+    void insertUserSP(User user) throws SQLException;
+    void deleteUserSP(int id);
+    void editUserSP(User user);
+    List<User> displayUsersSP();
 }

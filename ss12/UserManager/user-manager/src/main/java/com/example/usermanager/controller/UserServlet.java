@@ -82,7 +82,7 @@ public class UserServlet extends HttpServlet {
         }
         switch (action) {
             case "create":
-                insertUser(request, response);
+                insertUserSP(request, response);
                 break;
             case "edit":
                 updateUser(request, response);
@@ -132,5 +132,38 @@ public class UserServlet extends HttpServlet {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+    private void insertUserSP(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String name = request.getParameter("name");
+        String email = request.getParameter("email");
+        String country = request.getParameter("country");
+        try {
+            userService.insertUserSP(new User(name, email, country));
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        List<User> userList = userService.selectAllUsers();
+        request.setAttribute("userList", userList);
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("user/list.jsp");
+        requestDispatcher.forward(request, response);
+    }
+    private void findUserById(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        User user = userService.findUserById(Integer.parseInt(request.getParameter("id")));
+        request.setAttribute("userList", user);
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("user/list.jsp");
+        requestDispatcher.forward(request, response);
+    }
+    private void displayUserSP(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        List<User> userList = userService.displayUsersSP();
+        request.setAttribute("userList", userList);
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("user/list.jsp");
+        requestDispatcher.forward(request, response);
+    }
+    private void deleteUserSP(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        userService.deleteUserSP(Integer.parseInt(request.getParameter("id")));
+        List<User> userList = userService.displayUsersSP();
+        request.setAttribute("userList", userList);
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("user/list.jsp");
+        requestDispatcher.forward(request, response);
     }
 }
