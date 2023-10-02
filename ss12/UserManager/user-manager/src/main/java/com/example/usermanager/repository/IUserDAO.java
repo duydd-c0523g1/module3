@@ -6,15 +6,20 @@ import java.sql.SQLException;
 import java.util.List;
 
 public interface IUserDAO {
-    public void insertUser(User user) throws SQLException;
+    void insertUser(User user) throws SQLException;
 
-    public User selectUser(int id);
+    User selectUser(int id);
 
-    public List<User> selectAllUsers();
+    List<User> displayAllUsers();
 
     public void deleteUser(int id);
 
     public void updateUser(User user);
     List<User> findByCountry(String country) throws SQLException;
     List<User> orderByName();
+    User findUserById(int id);
+    void insertUserSP(User user) throws SQLException;
+    void deleteUserSP(int id);
+    void editUserSP(User user);
+    List<User> displayUsersSP();
 }

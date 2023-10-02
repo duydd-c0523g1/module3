@@ -9,7 +9,7 @@ import java.util.List;
 public class UserDAO implements IUserDAO {
     private final String JDBC_URL = "jdbc:mysql://localhost:3306/user";
     private final String JDBC_USERNAME = "root";
-    private final String JDBC_PASSWORD = "matkhau";
+    private final String JDBC_PASSWORD = "Duylatao12345";
     private static final String INSERT_USER_SQL = "INSERT INTO users(name, email, country) VALUES (?, ?, ?)";
     private static final String SELECT_USER_BY_ID = "SELECT id, name, email, country from users WHERE id = ?";
     private static final String SELECT_ALL_USER = "SELECT * FROM users";
@@ -17,6 +17,12 @@ public class UserDAO implements IUserDAO {
     private static final String UPDATE_USER_SQL = "UPDATE users SET name = ?, email = ?, country = ? WHERE id = ?";
     private static final String ORDER_BY_NAME = "SELECT * FROM users ORDER BY name";
     private static final String FIND_USER_BY_COUNTRY = "SELECT name, email FROM users WHERE country = ?";
+    private static final String FIND_USER_BY_ID_SP = "CALL get_user_by_id(?);";
+    private static final String INSERT_USER_SP = "CALL insert_user(?, ?, ?);";
+    private static final String SELECT_ALL_USER_SP = "CALL select_all_users();";
+    private static final String EDIT_USER_SP = "CALL edit_user(?, ?, ?, ?);";
+    private static final String DELETE_USER_SP = "CALL delete_user(?);";
+
     public UserDAO() {
     }
 
@@ -67,11 +73,11 @@ public class UserDAO implements IUserDAO {
     }
 
     @Override
-    public List<User> selectAllUsers() {
+    public List<User> displayAllUsers() {
         List<User> userList = new ArrayList<>();
         Connection connection = getConnection();
         try (
-             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_USER)) {
+                PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_USER)) {
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 int id = resultSet.getInt("id");
@@ -115,8 +121,8 @@ public class UserDAO implements IUserDAO {
     public List<User> findByCountry(String country) throws SQLException {
         List<User> userList = new ArrayList<>();
         try (Connection connection = getConnection();
-        PreparedStatement preparedStatement = connection.prepareStatement(FIND_USER_BY_COUNTRY)) {
-            preparedStatement.setString(1,country);
+             PreparedStatement preparedStatement = connection.prepareStatement(FIND_USER_BY_COUNTRY)) {
+            preparedStatement.setString(1, country);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 String name = resultSet.getString("name");
@@ -130,9 +136,88 @@ public class UserDAO implements IUserDAO {
     @Override
     public List<User> orderByName() {
         List<User> userList = new ArrayList<>();
-        Connection connection = getConnection();
-        try (
-                PreparedStatement preparedStatement = connection.prepareStatement(ORDER_BY_NAME)) {
+        try (Connection connection = getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(ORDER_BY_NAME)) {
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                int id = resultSet.getInt("id");
+                String name = resultSet.getString("name");
+                String email = resultSet.getString("email");
+                String country = resultSet.getString("country");
+                userList.add(new User(id, name, email, country));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return userList;
+    }
+
+    @Override
+    public User findUserById(int id) {
+        try (Connection connection = getConnection();
+             PreparedStatement preparedStatement = connection.prepareCall(FIND_USER_BY_ID_SP)) {
+            preparedStatement.setInt(1, id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                String name = resultSet.getString("name");
+                String email = resultSet.getString("email");
+                String country = resultSet.getString("country");
+                return new User(id, name, email, country);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return null;
+    }
+
+    @Override
+    public void insertUserSP(User user) {
+        try (Connection connection = getConnection();
+             PreparedStatement preparedStatement = connection.prepareCall(INSERT_USER_SP)) {
+            preparedStatement.setString(1, user.getName());
+            preparedStatement.setString(2, user.getEmail());
+            preparedStatement.setString(3, user.getCountry());
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public void deleteUserSP(int id) {
+        try (Connection connection = getConnection();
+             PreparedStatement preparedStatement = connection.prepareCall(DELETE_USER_SP)) {
+            preparedStatement.setInt(1, id);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public void editUserSP(User user) {
+        List<User> userList = displayAllUsers();
+        try (Connection connection = getConnection();
+             PreparedStatement preparedStatement = connection.prepareCall(EDIT_USER_SP)) {
+            for (User u : userList) {
+                if (u.getId() == user.getId()) {
+                    preparedStatement.setInt(4, user.getId());
+                    preparedStatement.setString(1, user.getName());
+                    preparedStatement.setString(2, user.getEmail());
+                    preparedStatement.setString(3, user.getCountry());
+                    preparedStatement.executeUpdate();
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public List<User> displayUsersSP() {
+        List<User> userList = new ArrayList<>();
+        try (Connection connection = getConnection();
+             PreparedStatement preparedStatement = connection.prepareCall(SELECT_ALL_USER_SP)) {
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 int id = resultSet.getInt("id");
