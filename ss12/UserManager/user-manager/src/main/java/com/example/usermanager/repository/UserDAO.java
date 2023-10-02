@@ -174,10 +174,13 @@ public class UserDAO implements IUserDAO {
     public void insertUserSP(User user) {
         try (Connection connection = getConnection();
              PreparedStatement preparedStatement = connection.prepareCall(INSERT_USER_SP)) {
+            connection.setAutoCommit(false);
             preparedStatement.setString(1, user.getName());
             preparedStatement.setString(2, user.getEmail());
             preparedStatement.setString(3, user.getCountry());
             preparedStatement.executeUpdate();
+            connection.commit();
+            connection.setAutoCommit(true);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
